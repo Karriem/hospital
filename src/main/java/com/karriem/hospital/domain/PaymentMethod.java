@@ -22,25 +22,26 @@ public class PaymentMethod implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     @Embedded
     private CreditCard credit;
     @Embedded
-    private MedicalAid aid;
+    private MonthlyPayments mon;
     @Embedded
-    private MonthlyPayments mon; 
+    private MedicalAid aid;
 
     public PaymentMethod() {
     }
     
     public PaymentMethod(Builder build){
         
+        id = build.id;
         credit = build.credit;
-        aid = build.aid;
         mon = build.mon;
+        aid = build.aid;
     }
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -48,22 +49,26 @@ public class PaymentMethod implements Serializable {
         return credit;
     }
 
-    public MedicalAid getAid() {
-        return aid;
-    }
-
     public MonthlyPayments getMon() {
         return mon;
     }
 
+    public MedicalAid getAid() {
+        return aid;
+    }
+   
     public static class Builder{
         
-        private CreditCard credit;        
-        private MedicalAid aid;        
-        private MonthlyPayments mon; 
+        private Long id;
+        private CreditCard credit;
+        private MonthlyPayments mon;
+        private MedicalAid aid;
         
-        public Builder(){
+        public Builder id(Long val){
             
+            this.id = val;
+            
+            return this;
         }
         
         public Builder creditCard(CreditCard credit){
@@ -73,16 +78,16 @@ public class PaymentMethod implements Serializable {
             return this;
         }
         
-        public Builder medicalAid(MedicalAid aid){
+        public Builder monthlyPayments(MonthlyPayments mon){
             
-            this.aid = aid;
+            this.mon = mon;
             
             return this;
         }
         
-        public Builder monthlyPayments(MonthlyPayments mon){
+        public Builder medicalAid(MedicalAid aid){
             
-            this.mon = mon;
+            this.aid = aid;
             
             return this;
         }
@@ -96,12 +101,13 @@ public class PaymentMethod implements Serializable {
             
             this.aid = pay.getAid();
             this.credit = pay.getCredit();
+            this.id = pay.getId();
             this.mon = pay.getMon();
             
             return this;
         }
     } 
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

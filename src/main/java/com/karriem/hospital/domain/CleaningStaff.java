@@ -23,16 +23,13 @@ public class CleaningStaff implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String cleanID;
-    private String firstName;
-    private String lastName;
-    private int age;
+    private Names name;
+    private Demographic demo;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
-    @Embedded
-    private GeneralEquipment equip;
 
     public CleaningStaff() {
     }
@@ -41,15 +38,13 @@ public class CleaningStaff implements Serializable{
         
         id = builder.id;
         cleanID = builder.cleanID;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        age = builder.age;
+        name = builder.name;
+        demo = builder.demo;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
-        equip = builder.equip;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,16 +52,12 @@ public class CleaningStaff implements Serializable{
         return cleanID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Names getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
+    public Demographic getDemo() {
+        return demo;
     }
 
     public String getJobDescription() {
@@ -76,28 +67,21 @@ public class CleaningStaff implements Serializable{
     public ContactDetails getContact() {
         return contact;
     }
-
-    public GeneralEquipment getEquip() {
-        return equip;
-    }
-
     
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String cleanID;
-        private String firstName;
-        private String lastName;
-        private int age;
+        private Names name;
+        private Demographic demo;
         private String jobDescription;
         private ContactDetails contact;
-        private GeneralEquipment equip;
         
         public Builder() {
         
         }
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -109,25 +93,18 @@ public class CleaningStaff implements Serializable{
             this.cleanID = val;
             
             return this;
-        }
+        }        
         
-        public Builder firstName(String val){
+        public Builder names(Names val){
             
-            this.firstName = val;
+            this.name = val;
             
             return this;
-        }
+        } 
         
-        public Builder lastName(String val){
+        public Builder demographic(Demographic demo){
             
-            this.lastName = val;
-            
-            return this;
-        }
-        
-        public Builder age(int val){
-            
-            this.age = val;
+            this.demo = demo;
             
             return this;
         }
@@ -146,13 +123,6 @@ public class CleaningStaff implements Serializable{
             return this;
         }
         
-        public Builder equip(GeneralEquipment equip){
-            
-            this.equip = equip;
-            
-            return this;
-        }
-        
         public CleaningStaff build(){
             
             return new CleaningStaff(this);
@@ -162,12 +132,10 @@ public class CleaningStaff implements Serializable{
             
             this.id = clean.getId();
             this.cleanID = clean.getCleanID();
-            this.firstName = clean.getFirstName();
-            this.lastName = clean.getLastName();
-            this.age = clean.getAge();
+            this.name = clean.getName();
+            this.demo = clean.getDemo();
             this.jobDescription = clean.getJobDescription();
             this.contact = clean.getContact();
-            this.equip = clean.getEquip();
             
             return this;
         }

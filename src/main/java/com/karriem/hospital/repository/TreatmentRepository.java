@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author Karriem
  */
 @Repository
-public interface TreatmentRepository extends JpaRepository<Treatment, Long>{
+public interface TreatmentRepository  extends JpaRepository<Treatment, Long>{
     
 }

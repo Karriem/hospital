@@ -6,7 +6,7 @@
 
 package com.karriem.hospital.services.crud;
 
-import com.karriem.hospital.CrudService;
+import com.karriem.hospital.services.CrudService;
 import com.karriem.hospital.domain.MedicalSupplies;
 
 

@@ -25,9 +25,6 @@ public class CleaningStaffServiceImpl implements CleaningStaffService{
         
         CleaningStaff cleanObj = new CleaningStaff.Builder()
                                             .cleanID("C1001")
-                                            .firstName("Alexander")
-                                            .lastName("Daniels")
-                                            .age(24)
                                             .jobDescription("Cleaner")
                                             .build();
         
@@ -41,7 +38,7 @@ public class CleaningStaffServiceImpl implements CleaningStaffService{
         
         CleaningStaff newClean = new CleaningStaff.Builder()
                                             .cleaningStaff(new CleaningStaffServiceImpl().createCleaner().get(0))
-                                            .age(23)
+                                            .jobDescription("Mechanic")
                                             .build();                                       
         
         cleanList.add(newClean);

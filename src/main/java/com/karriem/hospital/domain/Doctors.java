@@ -33,8 +33,9 @@ public class Doctors implements Serializable{
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
-    @OneToMany
-    private List<Patients> patientsList;
+
+    public Doctors() {
+    }
 
     public Doctors(Builder builder){
         
@@ -45,15 +46,10 @@ public class Doctors implements Serializable{
         age = builder.age;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
-        patientsList = builder.patientsList;
     }
 
     public ContactDetails getContact() {
         return contact;
-    }
-
-    public List<Patients> getPatientsList() {
-        return patientsList;
     }
         
     public String getId() {
@@ -89,7 +85,6 @@ public class Doctors implements Serializable{
         private int age;
         private String jobDescription;
         private ContactDetails contact;
-        private List<Patients> patientsList;
         
         public Builder() {
         }
@@ -143,13 +138,6 @@ public class Doctors implements Serializable{
             return this;
         } 
         
-        public Builder patientsList(List val){
-            
-            this.patientsList = val;
-            
-            return this;
-        }
-        
         public Doctors build(){
             
             return new Doctors(this);
@@ -163,7 +151,6 @@ public class Doctors implements Serializable{
             this.lastName = doctor.getLastName();
             this.age = doctor.getAge();
             this.jobDescription = doctor.getJobDescription();
-            this.patientsList = doctor.getPatientsList();
             this.contact = doctor.getContact();
             
             return this;

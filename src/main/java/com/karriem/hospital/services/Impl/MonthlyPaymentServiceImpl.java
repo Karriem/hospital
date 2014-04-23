@@ -24,7 +24,6 @@ public class MonthlyPaymentServiceImpl implements MonthlyPaymentService{
     public List<MonthlyPayments> createMonthly() {
         
         MonthlyPayments monthlyObj = new MonthlyPayments.Builder()
-                                            .patientID("P1001")
                                             .paymentID("PAy10001")
                                             .months(12)
                                             .monthlyInstallments(400)
@@ -41,7 +40,7 @@ public class MonthlyPaymentServiceImpl implements MonthlyPaymentService{
         
         MonthlyPayments newMonthlyObj = new MonthlyPayments.Builder()
                                             .monthlyPayments(new MonthlyPaymentServiceImpl().createMonthly().get(0))
-                                            .patientID("P1002")
+                                            .treatmentCost(5800)
                                             .build();                                       
         
         monthlyList.add(newMonthlyObj);

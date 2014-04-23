@@ -25,9 +25,7 @@ public class MedicalAidServiceImpl implements MedicalAidService{
         
         MedicalAid medObj = new MedicalAid.Builder()
                                 .medicalAidNo("Aid011444")
-                                .lastName("Shepard")
                                 .medicalAidName("EverCare")
-                                .patientID("P1001")
                                 .amtCover(5000)
                                 .typeCover("General")
                                 .build();
@@ -43,7 +41,7 @@ public class MedicalAidServiceImpl implements MedicalAidService{
         
         MedicalAid newMed = new MedicalAid.Builder()
                                 .medicalAid(new MedicalAidServiceImpl().createMedicalAid().get(0))
-                                .lastName("Sheperd")
+                                .typeCover("Full")
                                 .build();
         
         medList.add(newMed);

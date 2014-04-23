@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.karriem.hospital;
+package com.karriem.hospital.services;
 
 import java.util.List;
 

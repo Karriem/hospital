@@ -7,7 +7,6 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,76 +21,66 @@ public class Treatment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    @Embedded
-    private ComaTreatment coma;
-    @Embedded
-    private ICUTreatment icu;
-    @Embedded
-    private GeneralTreatment general;
+    private Long id;
+    private String treatmentId;
+    private String description;
+    private float cost;
     
-    public Treatment (Builder build){
+    public Treatment(Builder build){
         
         id = build.id;
-        coma = build.coma;
-        icu = build.icu;
-        general = build.general;
+        treatmentId = build.treatmentId;
+        description = build.description;
+        cost = build.cost;
     }
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public ComaTreatment getComa() {
-        return coma;
+    public String getTreatmentId() {
+        return treatmentId;
     }
 
-    public ICUTreatment getIcu() {
-        return icu;
+    public String getDescription() {
+        return description;
     }
 
-    public GeneralTreatment getGeneral() {
-        return general;
+    public float getCost() {
+        return cost;
     }
-
-    public class Builder {
+    
+    public static class Builder{
         
-        private String id;
-        @Embedded
-        private ComaTreatment coma;
-        @Embedded
-        private ICUTreatment icu;
-        @Embedded
-        private GeneralTreatment general;
+        private Long id;
+        private String treatmentId;
+        private String description;
+        private float cost;
         
-        public Builder (){
-            
-        }
-        
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
             return this;
         }
         
-        public Builder comaTreatment(ComaTreatment coma){
+        public Builder treatmentId(String val){
             
-            this.coma = coma;
-            
-            return this;
-        }
-        
-        public Builder icuTreatment(ICUTreatment icu){
-            
-            this.icu = icu;
+            this.treatmentId = val;
             
             return this;
         }
         
-        public Builder generalTreatment(GeneralTreatment general){
+        public Builder description(String val){
             
-            this.general = general;
+            this.description = val;
+            
+            return this;
+        }
+        
+        public Builder cost(float val){
+            
+            this.cost = val;
             
             return this;
         }
@@ -103,10 +92,10 @@ public class Treatment implements Serializable {
         
         public Builder treatment(Treatment treat){
             
+            this.cost = treat.getCost();
+            this.description = treat.getDescription();
             this.id = treat.getId();
-            this.coma = treat.getComa();
-            this.icu = treat.getIcu();
-            this.general = treat.getGeneral();
+            this.treatmentId = treat.getTreatmentId();
             
             return this;
         }

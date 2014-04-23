@@ -7,7 +7,6 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,136 +18,224 @@ import javax.persistence.Id;
  * @author Karriem
  */
 @Entity
-public class Patients implements Serializable{
-    
+public class Patients implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
+    private String patientID;
     @Embedded
-    private GeneralPatients generalp;
+    private Names name;
     @Embedded
-    private ComaPatients coma;
+    private Demographic demo;
     @Embedded
-    private ICUPatients icu;
-    @Embedded
-    private TerminalPatients terminal;
+    private ContactDetails contact;
+    private String patientType;
+    private String illness;
+    private String treatmentID;
+    private String medicineID;
+    private String roomNo;
+    private PaymentMethod pay;
 
     public Patients() {
     }
-
-    public Patients (Builder builder){
+   
+    public Patients(Builder build){
         
-        id = builder.id;
-        generalp = builder.general;
-        coma = builder.coma;
-        icu = builder.icu;
-        terminal = builder.terminal;
-    }
-
-    public TerminalPatients getTerminal() {
-        return terminal;
-    }
-
-    public GeneralPatients getGeneralp() {
-        return generalp;
-    }
-
-    public ComaPatients getComa() {
-        return coma;
-    }
-
-    public ICUPatients getIcu() {
-        return icu;
-    }
-
-    public String getId() {
-        return id;
+        id = build.id;
+        patientID = build.patientID;
+        name = build.names;
+        demo = build.demo;
+        contact = build.contact;
+        patientType = build.patientType;
+        illness = build.illness;
+        treatmentID = build.treatmentID;
+        medicineID = build.medicineID;
+        roomNo = build.roomNo;
+        pay = build.pay;
     }
     
-    public static class Builder {
+    public Long getId() {
+        return id;
+    }
+
+    public PaymentMethod getPay() {
+        return pay;
+    }
+
+    public String getPatientID() {
+        return patientID;
+    }
+
+    public Names getName() {
+        return name;
+    }
+
+    public Demographic getDemo() {
+        return demo;
+    }
+
+    public ContactDetails getContact() {
+        return contact;
+    }
+
+    public String getPatientType() {
+        return patientType;
+    }
+
+    public String getIllness() {
+        return illness;
+    }
+
+    public String getTreatmentID() {
+        return treatmentID;
+    }
+
+    public String getMedicineID() {
+        return medicineID;
+    }
+
+    public String getRoomNo() {
+        return roomNo;
+    }
+
+    public static class Builder{
         
-        private String id;
-        private GeneralPatients general;
-        private ComaPatients coma;
-        private ICUPatients icu;
-        private TerminalPatients terminal;
+        private Long id;
+        private String patientID;
+        private Names names;
+        private Demographic demo;
+        private ContactDetails contact;
+        private String patientType;
+        private String illness;
+        private String treatmentID;
+        private String medicineID;
+        private String roomNo;
+        private PaymentMethod pay;
         
-        public Builder(){
-            
-        }
-        
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
             return this;
         }
         
-        public Builder generalPatients(GeneralPatients general){
+        public Builder paymentMethod(PaymentMethod pay){
             
-            this.general = general;
-            
-            return this;
-        }
-        
-        public Builder comaPatients(ComaPatients coma){
-            
-            this.coma = coma;
+            this.pay = pay;
             
             return this;
         }
         
-        public Builder icuPatients(ICUPatients icu){
+        public Builder patientID(String val){
             
-            this.icu = icu;
+            this.patientID = val;
             
             return this;
         }
         
-        public Builder terminalPatients(TerminalPatients terminal){
+        public Builder names(Names val){
             
-            this.terminal = terminal;
+            this.names = val;
             
             return this;
         }
+        
+        public Builder demographic(Demographic val){
+            
+            this.demo = val;
+            
+            return this;
+        }
+        
+        public Builder contactDetails(ContactDetails val){
+            
+            this.contact = val;
+            
+            return this;
+        }
+        
+        public Builder patientType(String val){
+            
+            this.patientType = val;
+            
+            return this;
+        }
+        
+        public Builder illness(String val){
+            
+            this.illness = val;
+            
+            return this;
+        }
+        
+        public Builder treatmentID(String val){
+            
+            this.treatmentID = val;
+            
+            return this;
+        }
+        
+        public Builder medicineID(String val){
+            
+            this.medicineID = val;
+            
+            return this;
+        }
+        
+        public Builder roomNo(String val){
+            
+            this.roomNo = val;
+            
+            return this;
+        }       
         
         public Patients build(){
             
             return new Patients(this);
         }
         
-        public Builder patients(Patients patient){
+        public Builder patients(Patients pat){
             
-            this.id = patient.getId();
-            this.coma = patient.getComa();
-            this.general = patient.getGeneralp();
-            this.icu = patient.getIcu();
-            this.terminal = patient.getTerminal();
+            this.contact = pat.getContact();
+            this.demo = pat.getDemo();
+            this.id = pat.getId();
+            this.illness = pat.getIllness();
+            this.medicineID = pat.getMedicineID();
+            this.names = pat.getName();
+            this.patientID = pat.getPatientID();
+            this.patientType = pat.getPatientType();
+            this.roomNo = pat.getRoomNo();
+            this.treatmentID = pat.getTreatmentID();
+            this.pay = pat.getPay();
             
             return this;
         }
     }
-
+    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Patients)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Patients other = (Patients) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        Patients other = (Patients) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "com.karriem.hospital.domain.Patients[ id=" + id + " ]";
+    }
+    
 }

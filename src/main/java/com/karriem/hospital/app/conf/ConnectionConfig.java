@@ -18,21 +18,20 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 /**
  *
  * @author Karriem
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.karriem.hospital.respository")
+@EnableJpaRepositories(basePackages = "com.karriem.hospital.repository")
 public class ConnectionConfig {
     
     @Bean
     public DataSource dataSource() {
         BasicDataSource ds = new org.apache.commons.dbcp.BasicDataSource();
         ds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
-        ds.setUrl("jdbc:derby://localhost:1527/sample");
+        ds.setUrl("jdbc:derby://localhost:1527/hospital");
         ds.setUsername("app");
         ds.setPassword("app");
         return ds;

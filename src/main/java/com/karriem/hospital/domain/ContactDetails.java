@@ -23,6 +23,9 @@ public class ContactDetails implements Serializable{
     @Column(unique = true)
     private String email;
 
+    public ContactDetails() {
+    }
+
     public ContactDetails(Builder builder){
         
         postalAddress = builder.postalAddress;
@@ -54,9 +57,8 @@ public class ContactDetails implements Serializable{
         private String cellNumber;
         @Column(unique = true)
         private String email;
-        
-        public Builder (){
-            
+
+        public Builder() {
         }
         
         public Builder postalAddress(String val){

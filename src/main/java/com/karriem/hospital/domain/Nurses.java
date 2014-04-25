@@ -7,6 +7,7 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +23,16 @@ public class Nurses implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String nurID;
-    private String firstName;
-    private String lastName;
-    private int age;
     private String jobDescription;
-    private ContactDetails contact;
     private String ward;
+    @Embedded
+    private ContactDetails contact;
+    @Embedded
+    private Names name;
+    @Embedded
+    private Demographic demo;
 
     public Nurses() {
     }
@@ -38,32 +41,27 @@ public class Nurses implements Serializable{
         
         id = builder.id;
         nurID = builder.nurID;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        age = builder.age;
         jobDescription = builder.jobDescription;
+        demo = builder.demo;
+        name = builder.name;
         contact = builder.contact;
         ward = builder.ward;
     }
+
+    public Names getName() {
+        return name;
+    }
+
+    public Demographic getDemo() {
+        return demo;
+    }
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     public String getNurID() {
         return nurID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public String getJobDescription() {
@@ -80,20 +78,19 @@ public class Nurses implements Serializable{
    
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String nurID;
-        private String firstName;
-        private String lastName;
-        private int age;
         private String jobDescription;
         private ContactDetails contact;
         private String ward;
-
+        private Names name;
+        private Demographic demo;
+        
         public Builder() {
             
         }
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -103,27 +100,6 @@ public class Nurses implements Serializable{
         public Builder nurID(String val){
             
             this.nurID = val;
-            
-            return this;
-        }
-        
-        public Builder firstName(String val){
-            
-            this.firstName = val;
-            
-            return this;
-        }
-        
-        public Builder lastName(String val){
-            
-            this.lastName = val;
-            
-            return this;
-        }
-        
-        public Builder age(int val){
-            
-            this.age = val;
             
             return this;
         }
@@ -149,6 +125,20 @@ public class Nurses implements Serializable{
             return this;
         }
         
+        public Builder names(Names name){
+            
+            this.name = name;
+            
+            return this;
+        }
+        
+        public Builder demographic(Demographic demo){
+            
+            this.demo = demo;
+            
+            return this;
+        }
+        
         public Nurses build(){
             
             return new Nurses(this);
@@ -158,12 +148,11 @@ public class Nurses implements Serializable{
             
             this.id = nurse.getId();
             this.nurID = nurse.getNurID();
-            this.firstName = nurse.getFirstName();
-            this.lastName = nurse.getLastName();
-            this.age = nurse.getAge();
             this.jobDescription = nurse.getJobDescription();
             this.contact = nurse.getContact();
             this.ward = nurse.getWard();
+            this.demo = nurse.getDemo();
+            this.name = nurse.getName();
             
             return this;
         }

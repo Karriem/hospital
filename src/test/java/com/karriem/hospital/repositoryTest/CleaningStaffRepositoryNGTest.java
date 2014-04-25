@@ -30,7 +30,6 @@ public class CleaningStaffRepositoryNGTest {
     
     private static ApplicationContext ctx;
     private final Long id = 1L;
-
     private CleaningStaffRepository repo;
     
     public CleaningStaffRepositoryNGTest() {
@@ -57,16 +56,17 @@ public class CleaningStaffRepositoryNGTest {
                             .build();
          
          Demographic demo = new Demographic.Builder()
-                                .gender("male")
+                                .gender("Male")
                                 .age(35)
                                 .build();
          
-         CleaningStaff clean = new CleaningStaff.Builder()
+         CleaningStaff clean = new CleaningStaff.Builder(id)
                                    .names(names)
                                    .demographic(demo)
                                    .cleanID("C1001")
                                    .jobDescription("Cleaner")
                                    .contact(contact)
+                                   .salary(10000)
                                    .build();
          repo.save(clean);
          Assert.assertNotNull(clean);
@@ -120,7 +120,7 @@ public class CleaningStaffRepositoryNGTest {
     }
 
     @BeforeMethod
-    public void setUpMethod() throws Exception {
+    public void setUpMethod() throws Exception { 
     }
 
     @AfterMethod

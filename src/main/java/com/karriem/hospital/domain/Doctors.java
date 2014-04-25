@@ -7,13 +7,11 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,14 +23,16 @@ public class Doctors implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String docID;
-    private String firstName;
-    private String lastName;
-    private int age;
+    @Embedded
+    private Names name;
+    @Embedded
+    private Demographic demo;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
+    private double salary;
 
     public Doctors() {
     }
@@ -41,18 +41,22 @@ public class Doctors implements Serializable{
         
         id = builder.id;
         docID = builder.docID;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        age = builder.age;
+        name = builder.name;
+        demo = builder.demo;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
+        salary = builder.salary;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     public ContactDetails getContact() {
         return contact;
     }
         
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -60,16 +64,12 @@ public class Doctors implements Serializable{
         return docID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Names getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
+    public Demographic getDemo() {
+        return demo;
     }
 
     public String getJobDescription() {
@@ -78,23 +78,34 @@ public class Doctors implements Serializable{
 
     public static class Builder {
         
-        private String id;
+        private Long id;
         private String docID;
-        private String firstName;
-        private String lastName;
-        private int age;
+        private Names name;
+        private Demographic demo;
         private String jobDescription;
         private ContactDetails contact;
+        private double salary;
         
         public Builder() {
         }
 
-        public Builder id(String val){
+        public Builder(Long id) {
+            this.id = id;
+        }
+
+        public Builder id(Long val){
             
             this.id = val;
             
             return this;
         }  
+        
+        public Builder salary(double val){
+            
+            this.salary = val;
+            
+            return this;
+        }
         
         public Builder docId(String val){
             
@@ -103,30 +114,23 @@ public class Doctors implements Serializable{
             return this;
         }
         
-        public Builder firstName(String val){
+        public Builder names(Names name){
             
-            this.firstName = val;
+            this.name = name;
             
             return this;
         }
         
-        public Builder lastName(String val){
+        public Builder demographic(Demographic demo){
             
-            this.lastName = val;
+            this.demo = demo;
             
             return this;
-        }
+        } 
         
         public Builder jobDescription(String val){
             
             this.jobDescription = val;
-            
-            return this;
-        }
-        
-        public Builder age(int val){
-            
-            this.age = val;
             
             return this;
         }
@@ -147,11 +151,11 @@ public class Doctors implements Serializable{
             
             this.id = doctor.getId();
             this.docID = doctor.getDocID();
-            this.firstName = doctor.getFirstName();
-            this.lastName = doctor.getLastName();
-            this.age = doctor.getAge();
+            this.demo = doctor.getDemo();
+            this.name = doctor.getName();
             this.jobDescription = doctor.getJobDescription();
             this.contact = doctor.getContact();
+            this.salary = doctor.getSalary();
             
             return this;
         }

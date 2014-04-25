@@ -6,7 +6,7 @@
 
 package com.karriem.hospital.repository;
 
-import com.karriem.hospital.domain.PaymentMethod;
+import com.karriem.hospital.domain.GeneralSupplies;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author Karriem
  */
 @Repository
-public interface PaymentMethodRepository  extends JpaRepository<PaymentMethod, Long>{
+public interface GeneralSuppliesRepository extends JpaRepository<GeneralSupplies, Long>{
     
 }

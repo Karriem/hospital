@@ -22,10 +22,13 @@ public class Medicine implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String medID;
     private String medDescription;
     private int quantity;
+
+    public Medicine() {
+    }
     
     public Medicine(Builder builder){
         
@@ -35,7 +38,7 @@ public class Medicine implements Serializable{
         quantity = builder.quantity;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -53,12 +56,12 @@ public class Medicine implements Serializable{
     
     public static class Builder{
     
-        private String id;
+        private Long id;
         private String medID;
         private String medDescription;
         private int quantity;
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             

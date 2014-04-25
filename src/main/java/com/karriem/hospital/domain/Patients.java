@@ -34,8 +34,8 @@ public class Patients implements Serializable {
     private String illness;
     private String treatmentID;
     private String medicineID;
+    private String paymentID;
     private String roomNo;
-    private PaymentMethod pay;
 
     public Patients() {
     }
@@ -52,15 +52,15 @@ public class Patients implements Serializable {
         treatmentID = build.treatmentID;
         medicineID = build.medicineID;
         roomNo = build.roomNo;
-        pay = build.pay;
+        paymentID = build.paymentID;
+    }
+
+    public String getPaymentID() {
+        return paymentID;
     }
     
     public Long getId() {
         return id;
-    }
-
-    public PaymentMethod getPay() {
-        return pay;
     }
 
     public String getPatientID() {
@@ -111,7 +111,7 @@ public class Patients implements Serializable {
         private String treatmentID;
         private String medicineID;
         private String roomNo;
-        private PaymentMethod pay;
+        private String paymentID;
         
         public Builder id(Long val){
             
@@ -120,16 +120,16 @@ public class Patients implements Serializable {
             return this;
         }
         
-        public Builder paymentMethod(PaymentMethod pay){
+        public Builder patientID(String val){
             
-            this.pay = pay;
+            this.patientID = val;
             
             return this;
         }
         
-        public Builder patientID(String val){
+        public Builder paymentID(String val){
             
-            this.patientID = val;
+            this.paymentID = val;
             
             return this;
         }
@@ -207,7 +207,7 @@ public class Patients implements Serializable {
             this.patientType = pat.getPatientType();
             this.roomNo = pat.getRoomNo();
             this.treatmentID = pat.getTreatmentID();
-            this.pay = pat.getPay();
+            this.paymentID = pat.getPaymentID();
             
             return this;
         }

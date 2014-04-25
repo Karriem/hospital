@@ -23,14 +23,16 @@ public class GeneralStaff implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String genID;
-    private String firstName;
-    private String lastName;
-    private int age;
+    @Embedded
+    private Names name;
+    @Embedded
+    private Demographic demo;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
+    private float salary;
 
     public GeneralStaff() {
     }
@@ -39,31 +41,31 @@ public class GeneralStaff implements Serializable{
         
         id = builder.id;
         genID = builder.genID;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        age = builder.age;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
+        demo = builder.demo;
+        name = builder.name;
+        salary = builder.salary;
     }
     
-    public String getId() {
+    public Long getId() {
         return id;
+    }
+
+    public float getSalary() {
+        return salary;
     }
 
     public String getGenID() {
         return genID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Names getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
+    public Demographic getDemo() {
+        return demo;
     }
 
     public String getJobDescription() {
@@ -76,19 +78,26 @@ public class GeneralStaff implements Serializable{
    
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String genID;
-        private String firstName;
-        private String lastName;
-        private int age;
+        private Names name;
+        private Demographic demo;
         private String jobDescription;
         private ContactDetails contact;
+        private float salary;
         
         public Builder() {
             
         }
         
-        public Builder id(String val){
+        public Builder salary(float salary){
+            
+            this.salary = salary;
+            
+            return this;
+        }
+        
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -102,23 +111,16 @@ public class GeneralStaff implements Serializable{
             return this;
         }
         
-        public Builder firstName(String val){
+        public Builder names(Names name){
             
-            this.firstName = val;
-            
-            return this;
-        }
-        
-        public Builder lastName(String val){
-            
-            this.lastName = val;
+            this.name = name;
             
             return this;
         }
         
-        public Builder age(int val){
+        public Builder demographic(Demographic demo){
             
-            this.age = val;
+            this.demo = demo;
             
             return this;
         }
@@ -146,11 +148,11 @@ public class GeneralStaff implements Serializable{
             
             this.id = mainten.getId();
             this.genID = mainten.getGenID();
-            this.firstName = mainten.getFirstName();
-            this.lastName = mainten.getLastName();
-            this.age = mainten.getAge();
+            this.demo = mainten.getDemo();
+            this.name = mainten.getName();
             this.jobDescription = mainten.getJobDescription();
             this.contact = mainten.getContact();
+            this.salary = mainten.getSalary();
             
             return this;
         }

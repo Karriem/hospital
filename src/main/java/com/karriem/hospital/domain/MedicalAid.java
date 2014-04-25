@@ -20,6 +20,9 @@ public class MedicalAid implements Serializable{
     private String medicalAidName;
     private String typeCover;
     private int amtCover;
+
+    public MedicalAid() {
+    }
     
     public MedicalAid(Builder builder){
         

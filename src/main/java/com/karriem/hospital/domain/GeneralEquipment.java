@@ -22,7 +22,7 @@ public class GeneralEquipment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String equipID;
     private String equipName;
     private int quantity;
@@ -40,7 +40,7 @@ public class GeneralEquipment implements Serializable {
         quality = builder.quality;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -62,13 +62,13 @@ public class GeneralEquipment implements Serializable {
     
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String equipID;
         private String equipName;
         private int quantity;
         private String quality;
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             

@@ -25,6 +25,9 @@ public class Treatment implements Serializable {
     private String treatmentId;
     private String description;
     private float cost;
+
+    public Treatment() {
+    }
     
     public Treatment(Builder build){
         

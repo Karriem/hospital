@@ -20,6 +20,9 @@ public class CreditCard implements Serializable{
     private String creditCardType;
     private String creditCardNo;
     private String accountHolder;
+
+    public CreditCard() {
+    }
     
     public CreditCard(Builder builder){
         

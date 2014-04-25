@@ -22,12 +22,12 @@ public class GeneralSupplies implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String suppliersID;
     private String suppliersName;
     private String equipmentID;
     private String description;
-    private String date;
+    private String dateOfOrder;
     private int amt;
     private int cost;
 
@@ -42,7 +42,7 @@ public class GeneralSupplies implements Serializable{
         equipmentID = builder.equipmentID;
         description = builder.description;
         amt = builder.amt;
-        date = builder.date;
+        dateOfOrder = builder.dateOfOrder;
         cost = builder.cost;
     }
 
@@ -50,7 +50,7 @@ public class GeneralSupplies implements Serializable{
         return suppliersName;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -66,8 +66,8 @@ public class GeneralSupplies implements Serializable{
         return description;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateOfOrder() {
+        return dateOfOrder;
     }
 
     public int getAmt() {
@@ -80,16 +80,16 @@ public class GeneralSupplies implements Serializable{
     
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String suppliersID;
         private String equipmentID;
         private String description;
-        private String date;
+        private String dateOfOrder;
         private int amt;
         private int cost;
         private String suppliersName;
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -117,9 +117,9 @@ public class GeneralSupplies implements Serializable{
             return this;
         }
         
-        public Builder date(String val){
+        public Builder dateOfOrder(String val){
             
-            this.date = val;
+            this.dateOfOrder = val;
             
             return this;
         }
@@ -156,7 +156,7 @@ public class GeneralSupplies implements Serializable{
             this.suppliersID = genS.getSuppliersID();
             this.equipmentID = genS.getEquipmentID();
             this.description = genS.getDescription();
-            this.date = genS.getDate();
+            this.dateOfOrder = genS.getDateOfOrder();
             this.amt = genS.getAmt();
             this.cost = genS.getCost();
             this.suppliersName = genS.getSuppliersName();

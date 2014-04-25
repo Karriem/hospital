@@ -25,11 +25,14 @@ public class CleaningStaff implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String cleanID;
+    @Embedded
     private Names name;
+    @Embedded
     private Demographic demo;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
+    private double salary;
 
     public CleaningStaff() {
     }
@@ -42,10 +45,15 @@ public class CleaningStaff implements Serializable{
         demo = builder.demo;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
+        salary = builder.salary;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     public String getCleanID() {
@@ -76,14 +84,25 @@ public class CleaningStaff implements Serializable{
         private Demographic demo;
         private String jobDescription;
         private ContactDetails contact;
+        private double salary;
         
         public Builder() {
-        
+        }
+
+        public Builder(Long id) {
+            this.id = id;
         }
         
         public Builder id(Long val){
             
             this.id = val;
+            
+            return this;
+        }
+        
+        public Builder salary(double salary){
+            
+            this.salary = salary;
             
             return this;
         }
@@ -136,6 +155,7 @@ public class CleaningStaff implements Serializable{
             this.demo = clean.getDemo();
             this.jobDescription = clean.getJobDescription();
             this.contact = clean.getContact();
+            this.salary = clean.getSalary();
             
             return this;
         }

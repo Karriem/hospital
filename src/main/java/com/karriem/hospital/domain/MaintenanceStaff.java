@@ -23,11 +23,13 @@ public class MaintenanceStaff implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String mID;
-    private String firstName;
-    private String lastName;
-    private int age;
+    @Embedded
+    private Names name;
+    @Embedded
+    private Demographic demo;
+    private int salary;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
@@ -39,27 +41,27 @@ public class MaintenanceStaff implements Serializable{
         
         id = builder.id;
         mID = builder.mID;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
-        age = builder.age;
+        name = builder.name;
+        demo = builder.demo;
+        salary = builder.salary;
         jobDescription = builder.jobDescription;
         contact = builder.contact;
     }
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Names getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Demographic getDemo() {
+        return demo;
     }
 
-    public int getAge() {
-        return age;
+    public int getSalary() {
+        return salary;
     }
 
     public String getJobDescription() {
@@ -76,11 +78,11 @@ public class MaintenanceStaff implements Serializable{
    
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String mID;
-        private String firstName;
-        private String lastName;
-        private int age;
+        private Names name;
+        private Demographic demo;
+        private int salary;
         private String jobDescription;
         private ContactDetails contact;
 
@@ -88,7 +90,7 @@ public class MaintenanceStaff implements Serializable{
             
         }
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -102,23 +104,23 @@ public class MaintenanceStaff implements Serializable{
             return this;
         }
         
-        public Builder firstName(String val){
+        public Builder names(Names name){
             
-            this.firstName = val;
-            
-            return this;
-        }
-        
-        public Builder lastName(String val){
-            
-            this.lastName = val;
+            this.name = name;
             
             return this;
         }
         
-        public Builder age(int val){
+        public Builder demographic(Demographic demo){
             
-            this.age = val;
+            this.demo = demo;
+            
+            return this;
+        }
+        
+        public Builder salary(int val){
+            
+            this.salary = val;
             
             return this;
         }
@@ -146,9 +148,9 @@ public class MaintenanceStaff implements Serializable{
             
             this.id = mainten.getId();
             this.mID = mainten.getmID();
-            this.firstName = mainten.getFirstName();
-            this.lastName = mainten.getLastName();
-            this.age = mainten.getAge();
+            this.demo = mainten.getDemo();
+            this.name = mainten.getName();
+            this.salary = mainten.getSalary();
             this.jobDescription = mainten.getJobDescription();
             this.contact = mainten.getContact();
             

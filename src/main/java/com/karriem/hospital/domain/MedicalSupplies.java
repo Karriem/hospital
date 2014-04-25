@@ -22,12 +22,12 @@ public class MedicalSupplies implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String suppliersID;
     private String suppliersName;
     private String equipmentID;
     private String description;
-    private String date;
+    private String dateOfOrder;
     private int amt;
     private int cost;
 
@@ -42,7 +42,7 @@ public class MedicalSupplies implements Serializable{
         equipmentID = builder.equipmentID;
         description = builder.description;
         amt = builder.amt;
-        date = builder.date;
+        dateOfOrder = builder.dateOfOrder;
         cost = builder.cost;
     }
 
@@ -50,7 +50,7 @@ public class MedicalSupplies implements Serializable{
         return suppliersName;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -67,7 +67,7 @@ public class MedicalSupplies implements Serializable{
     }
 
     public String getDate() {
-        return date;
+        return dateOfOrder;
     }
 
     public int getAmt() {
@@ -80,16 +80,16 @@ public class MedicalSupplies implements Serializable{
     
     public static class Builder{
         
-        private String id;
+        private Long id;
         private String suppliersID;
         private String equipmentID;
         private String description;
-        private String date;
+        private String dateOfOrder;
         private int amt;
         private int cost;
         private String suppliersName;
         
-        public Builder id(String val){
+        public Builder id(Long val){
             
             this.id = val;
             
@@ -119,7 +119,7 @@ public class MedicalSupplies implements Serializable{
         
         public Builder date(String val){
             
-            this.date = val;
+            this.dateOfOrder = val;
             
             return this;
         }
@@ -156,7 +156,7 @@ public class MedicalSupplies implements Serializable{
             this.suppliersID = medS.getSuppliersID();
             this.equipmentID = medS.getEquipmentID();
             this.description = medS.getDescription();
-            this.date = medS.getDate();
+            this.dateOfOrder = medS.getDate();
             this.amt = medS.getAmt();
             this.cost = medS.getCost();
             this.suppliersName = medS.getSuppliersName();

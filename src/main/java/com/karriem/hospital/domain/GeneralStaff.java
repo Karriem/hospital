@@ -32,7 +32,7 @@ public class GeneralStaff implements Serializable{
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
-    private float salary;
+    private double salary;
 
     public GeneralStaff() {
     }
@@ -52,7 +52,7 @@ public class GeneralStaff implements Serializable{
         return id;
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
@@ -84,13 +84,13 @@ public class GeneralStaff implements Serializable{
         private Demographic demo;
         private String jobDescription;
         private ContactDetails contact;
-        private float salary;
+        private double salary;
         
         public Builder() {
             
         }
         
-        public Builder salary(float salary){
+        public Builder salary(double salary){
             
             this.salary = salary;
             

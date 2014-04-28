@@ -29,7 +29,7 @@ public class MaintenanceStaff implements Serializable{
     private Names name;
     @Embedded
     private Demographic demo;
-    private int salary;
+    private double salary;
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
@@ -60,7 +60,7 @@ public class MaintenanceStaff implements Serializable{
         return demo;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
@@ -82,7 +82,7 @@ public class MaintenanceStaff implements Serializable{
         private String mID;
         private Names name;
         private Demographic demo;
-        private int salary;
+        private double salary;
         private String jobDescription;
         private ContactDetails contact;
 
@@ -118,7 +118,7 @@ public class MaintenanceStaff implements Serializable{
             return this;
         }
         
-        public Builder salary(int val){
+        public Builder salary(double val){
             
             this.salary = val;
             

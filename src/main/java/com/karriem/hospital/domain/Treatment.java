@@ -24,7 +24,7 @@ public class Treatment implements Serializable {
     private Long id;
     private String treatmentId;
     private String description;
-    private float cost;
+    private int cost;
 
     public Treatment() {
     }
@@ -49,7 +49,7 @@ public class Treatment implements Serializable {
         return description;
     }
 
-    public float getCost() {
+    public int getCost() {
         return cost;
     }
     
@@ -58,7 +58,7 @@ public class Treatment implements Serializable {
         private Long id;
         private String treatmentId;
         private String description;
-        private float cost;
+        private int cost;
         
         public Builder id(Long val){
             
@@ -81,7 +81,7 @@ public class Treatment implements Serializable {
             return this;
         }
         
-        public Builder cost(float val){
+        public Builder cost(int val){
             
             this.cost = val;
             

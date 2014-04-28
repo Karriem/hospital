@@ -9,6 +9,7 @@ package com.karriem.hospital.app.conf;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author Karriem
  */
 @Configuration
+@ComponentScan("com.karriem.hospital")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.karriem.hospital.repository")
 public class ConnectionConfig {

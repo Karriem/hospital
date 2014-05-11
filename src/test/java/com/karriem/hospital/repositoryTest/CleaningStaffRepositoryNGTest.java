@@ -10,8 +10,11 @@ import com.karriem.hospital.app.conf.ConnectionConfig;
 import com.karriem.hospital.domain.CleaningStaff;
 import com.karriem.hospital.domain.ContactDetails;
 import com.karriem.hospital.domain.Demographic;
+import com.karriem.hospital.domain.GeneralEquipment;
 import com.karriem.hospital.domain.Names;
 import com.karriem.hospital.repository.CleaningStaffRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -60,6 +63,8 @@ public class CleaningStaffRepositoryNGTest {
                                 .age(35)
                                 .build();
          
+         List<GeneralEquipment> eEquip = new ArrayList<>();
+                  
          CleaningStaff clean = new CleaningStaff.Builder(id)
                                    .names(names)
                                    .demographic(demo)
@@ -67,6 +72,7 @@ public class CleaningStaffRepositoryNGTest {
                                    .jobDescription("Cleaner")
                                    .contact(contact)
                                    .salary(10000)
+                                   .generalEquipment(eEquip)
                                    .build();
          repo.save(clean);
          Assert.assertNotNull(clean);

@@ -11,7 +11,10 @@ import com.karriem.hospital.domain.ContactDetails;
 import com.karriem.hospital.domain.Demographic;
 import com.karriem.hospital.domain.Doctors;
 import com.karriem.hospital.domain.Names;
+import com.karriem.hospital.domain.Patients;
 import com.karriem.hospital.repository.DoctorsRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -60,12 +63,15 @@ public class DoctorsRepositoryNGTest {
                                 .gender("Male")
                                 .build();         
          
+         List<Patients> patList = new ArrayList<>();
+         
          Doctors doc = new Doctors.Builder(id)
                             .contactDetails(contact)
                             .demographic(demo)
                             .docId("D1001")
                             .jobDescription("Heart Surgeon")
-                            .names(name)    
+                            .names(name) 
+                            .patientList(patList)
                             .salary(22220)
                             .build();
          

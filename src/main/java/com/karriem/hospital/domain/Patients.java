@@ -33,7 +33,6 @@ public class Patients implements Serializable {
     private String patientType;
     private String illness;
     private String treatmentID;
-    private String medicineID;
     private String paymentID;
     private String roomNo;
 
@@ -50,7 +49,6 @@ public class Patients implements Serializable {
         patientType = build.patientType;
         illness = build.illness;
         treatmentID = build.treatmentID;
-        medicineID = build.medicineID;
         roomNo = build.roomNo;
         paymentID = build.paymentID;
     }
@@ -91,10 +89,6 @@ public class Patients implements Serializable {
         return treatmentID;
     }
 
-    public String getMedicineID() {
-        return medicineID;
-    }
-
     public String getRoomNo() {
         return roomNo;
     }
@@ -109,7 +103,6 @@ public class Patients implements Serializable {
         private String patientType;
         private String illness;
         private String treatmentID;
-        private String medicineID;
         private String roomNo;
         private String paymentID;
         
@@ -176,13 +169,6 @@ public class Patients implements Serializable {
             return this;
         }
         
-        public Builder medicineID(String val){
-            
-            this.medicineID = val;
-            
-            return this;
-        }
-        
         public Builder roomNo(String val){
             
             this.roomNo = val;
@@ -201,7 +187,6 @@ public class Patients implements Serializable {
             this.demo = pat.getDemo();
             this.id = pat.getId();
             this.illness = pat.getIllness();
-            this.medicineID = pat.getMedicineID();
             this.names = pat.getName();
             this.patientID = pat.getPatientID();
             this.patientType = pat.getPatientType();

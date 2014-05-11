@@ -7,11 +7,14 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -33,6 +36,9 @@ public class Doctors implements Serializable{
     @Embedded
     private ContactDetails contact;
     private double salary;
+    @OneToMany
+    @JoinColumn(columnDefinition = "PATLIST_ID")
+    private List<Patients> patList;
 
     public Doctors() {
     }
@@ -46,6 +52,11 @@ public class Doctors implements Serializable{
         jobDescription = builder.jobDescription;
         contact = builder.contact;
         salary = builder.salary;
+        patList = builder.patList;
+    }
+
+    public List<Patients> getPatList() {
+        return patList;
     }
 
     public double getSalary() {
@@ -85,6 +96,7 @@ public class Doctors implements Serializable{
         private String jobDescription;
         private ContactDetails contact;
         private double salary;
+        private List<Patients> patList;
         
         public Builder() {
         }
@@ -99,6 +111,13 @@ public class Doctors implements Serializable{
             
             return this;
         }  
+        
+        public Builder patientList(List<Patients> val){
+            
+            this.patList = val;
+            
+            return this;
+        }
         
         public Builder salary(double val){
             
@@ -156,6 +175,7 @@ public class Doctors implements Serializable{
             this.jobDescription = doctor.getJobDescription();
             this.contact = doctor.getContact();
             this.salary = doctor.getSalary();
+            this.patList = doctor.getPatList();
             
             return this;
         }

@@ -7,11 +7,14 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -32,6 +35,9 @@ public class CleaningStaff implements Serializable{
     private String jobDescription;
     @Embedded
     private ContactDetails contact;
+    @OneToMany
+    @JoinColumn(columnDefinition = "GENEQUIP_ID")
+    private List<GeneralEquipment> genEquip;
     private double salary;
 
     public CleaningStaff() {
@@ -46,10 +52,15 @@ public class CleaningStaff implements Serializable{
         jobDescription = builder.jobDescription;
         contact = builder.contact;
         salary = builder.salary;
+        genEquip = builder.genEquip;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public List<GeneralEquipment> getGenEquip() {
+        return genEquip;
     }
 
     public double getSalary() {
@@ -85,6 +96,7 @@ public class CleaningStaff implements Serializable{
         private String jobDescription;
         private ContactDetails contact;
         private double salary;
+        private List<GeneralEquipment> genEquip;
         
         public Builder() {
         }
@@ -142,6 +154,13 @@ public class CleaningStaff implements Serializable{
             return this;
         }
         
+        public Builder generalEquipment(List<GeneralEquipment> eEquip){
+            
+            this.genEquip = eEquip;
+            
+            return this;
+        }
+        
         public CleaningStaff build(){
             
             return new CleaningStaff(this);
@@ -156,6 +175,7 @@ public class CleaningStaff implements Serializable{
             this.jobDescription = clean.getJobDescription();
             this.contact = clean.getContact();
             this.salary = clean.getSalary();
+            this.genEquip = clean.getGenEquip();
             
             return this;
         }

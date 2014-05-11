@@ -9,9 +9,12 @@ package com.karriem.hospital.repositoryTest;
 import com.karriem.hospital.app.conf.ConnectionConfig;
 import com.karriem.hospital.domain.ContactDetails;
 import com.karriem.hospital.domain.Demographic;
+import com.karriem.hospital.domain.GeneralEquipment;
 import com.karriem.hospital.domain.MaintenanceStaff;
 import com.karriem.hospital.domain.Names;
 import com.karriem.hospital.repository.MaintenanceStaffRepository;
+import java.util.ArrayList;
+import java.util.List;
 import junit.framework.Assert;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -60,12 +63,15 @@ public class MaintenenceStaffRepositoryNGTest {
                                 .gender("Female")
                                 .build();
         
+        List<GeneralEquipment> equip = new ArrayList<>();
+        
         MaintenanceStaff main = new MaintenanceStaff.Builder()
                                     .contactDetails(contact)
                                     .demographic(demo)
                                     .jobDescription("Repairman")
                                     .mID("M1001")
                                     .names(name)
+                                    .generalEquip(equip)
                                     .salary(4500)
                                     .build();
         
@@ -79,7 +85,7 @@ public class MaintenenceStaffRepositoryNGTest {
          repo = ctx.getBean(MaintenanceStaffRepository.class);
          
          MaintenanceStaff main = repo.findOne(id);
-         Assert.assertEquals(4500, main.getSalary());
+         Assert.assertEquals(4500.0, main.getSalary());
      }
      
      @Test(dependsOnMethods="readMaintenenceStaff")

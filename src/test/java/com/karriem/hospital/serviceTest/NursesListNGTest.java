@@ -26,13 +26,13 @@ import org.testng.annotations.Test;
  *
  * @author Karriem
  */
-public class NursesListtNGTest {
+public class NursesListNGTest {
     
     private static ApplicationContext ctx;
     private NursesRepository repo;
     private NursesListService service;
     
-    public NursesListtNGTest() {
+    public NursesListNGTest() {
     }
 
     // TODO add test methods here.

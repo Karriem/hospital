@@ -7,8 +7,12 @@
 package com.karriem.hospital.repositoryTest;
 
 import com.karriem.hospital.app.conf.ConnectionConfig;
+import com.karriem.hospital.domain.MedicalEquipment;
+import com.karriem.hospital.domain.Medicine;
 import com.karriem.hospital.domain.Treatment;
 import com.karriem.hospital.repository.TreatmentRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -40,10 +44,15 @@ public class TreatmentRepositoryNGTest {
      
          repo = ctx.getBean(TreatmentRepository.class);
          
+         List<Medicine> medicine = new ArrayList<>();
+         List<MedicalEquipment> medEquip = new ArrayList<>();
+         
          Treatment med = new Treatment.Builder()
                             .cost(20000)
                             .description("Lung Surgeory")
-                            .treatmentId("T1001")                 
+                            .treatmentId("T1001")  
+                            .medicalEquip(medEquip)
+                            .medicine(medicine)
                             .build();
          
          repo.save(med);

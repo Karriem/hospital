@@ -7,11 +7,14 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -33,6 +36,9 @@ public class GeneralStaff implements Serializable{
     @Embedded
     private ContactDetails contact;
     private double salary;
+    @OneToMany
+    @JoinColumn(columnDefinition = "GENEQUIP_ID")
+    private List<GeneralEquipment> genEquip;
 
     public GeneralStaff() {
     }
@@ -46,10 +52,15 @@ public class GeneralStaff implements Serializable{
         demo = builder.demo;
         name = builder.name;
         salary = builder.salary;
+        genEquip = builder.genEquip;
     }
     
     public Long getId() {
         return id;
+    }
+
+    public List<GeneralEquipment> getGenEquip() {
+        return genEquip;
     }
 
     public double getSalary() {
@@ -85,6 +96,7 @@ public class GeneralStaff implements Serializable{
         private String jobDescription;
         private ContactDetails contact;
         private double salary;
+        private List<GeneralEquipment> genEquip;
         
         public Builder() {
             
@@ -107,6 +119,13 @@ public class GeneralStaff implements Serializable{
         public Builder genID(String val){
             
             this.genID = val;
+            
+            return this;
+        }
+        
+        public Builder generalEquip(List<GeneralEquipment> val){
+            
+            this.genEquip = val;
             
             return this;
         }
@@ -153,6 +172,7 @@ public class GeneralStaff implements Serializable{
             this.jobDescription = mainten.getJobDescription();
             this.contact = mainten.getContact();
             this.salary = mainten.getSalary();
+            this.genEquip = mainten.getGenEquip();
             
             return this;
         }

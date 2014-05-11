@@ -7,11 +7,14 @@
 package com.karriem.hospital.repositoryTest;
 
 import com.karriem.hospital.app.conf.ConnectionConfig;
-import com.karriem.hospital.domain.GeneralStaff;
 import com.karriem.hospital.domain.ContactDetails;
 import com.karriem.hospital.domain.Demographic;
+import com.karriem.hospital.domain.GeneralEquipment;
+import com.karriem.hospital.domain.GeneralStaff;
 import com.karriem.hospital.domain.Names;
 import com.karriem.hospital.repository.GeneralStaffRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
@@ -61,12 +64,15 @@ public class GeneralStaffRepositoryNGTest {
                                 .gender("Male")
                                 .build();
         
+        List<GeneralEquipment> equip = new ArrayList<>();
+        
         GeneralStaff genS = new GeneralStaff.Builder()
                                 .contactDetails(conatact)
                                 .demographic(demo)
                                 .genID("GS1001")
                                 .jobDescription("Security")
                                 .names(name)
+                                .generalEquip(equip)
                                 .salary(8000)
                                 .build();
         

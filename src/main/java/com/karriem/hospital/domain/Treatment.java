@@ -7,10 +7,13 @@
 package com.karriem.hospital.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,6 +28,12 @@ public class Treatment implements Serializable {
     private String treatmentId;
     private String description;
     private int cost;
+    @OneToMany
+    @JoinColumn(columnDefinition = "MEDEQUIP_ID")
+    private List<MedicalEquipment> medEquip;
+    @OneToMany
+    @JoinColumn(columnDefinition = "MED_ID")
+    private List<Medicine> med;
 
     public Treatment() {
     }
@@ -35,10 +44,16 @@ public class Treatment implements Serializable {
         treatmentId = build.treatmentId;
         description = build.description;
         cost = build.cost;
+        medEquip = build.medEquip;
+        med = build.med;        
     }
     
     public Long getId() {
         return id;
+    }
+
+    public List<MedicalEquipment> getMedEquip() {
+        return medEquip;
     }
 
     public String getTreatmentId() {
@@ -52,6 +67,10 @@ public class Treatment implements Serializable {
     public int getCost() {
         return cost;
     }
+
+    public List<Medicine> getMed() {
+        return med;
+    }
     
     public static class Builder{
         
@@ -59,6 +78,8 @@ public class Treatment implements Serializable {
         private String treatmentId;
         private String description;
         private int cost;
+        private List<MedicalEquipment> medEquip;
+        private List<Medicine> med;
         
         public Builder id(Long val){
             
@@ -70,6 +91,20 @@ public class Treatment implements Serializable {
         public Builder treatmentId(String val){
             
             this.treatmentId = val;
+            
+            return this;
+        }
+        
+        public Builder medicalEquip(List<MedicalEquipment> val){
+            
+            this.medEquip = val;
+            
+            return this;
+        }
+        
+        public Builder medicine(List<Medicine> val){
+            
+            this.med = val;
             
             return this;
         }
@@ -99,6 +134,8 @@ public class Treatment implements Serializable {
             this.description = treat.getDescription();
             this.id = treat.getId();
             this.treatmentId = treat.getTreatmentId();
+            this.med = treat.getMed();
+            this.medEquip = treat.getMedEquip();
             
             return this;
         }
